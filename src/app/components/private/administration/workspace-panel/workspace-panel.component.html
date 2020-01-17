@@ -1,0 +1,40 @@
+<div>
+  <hr>
+  <div class="container">
+    <div class="row header">
+      <div class="col-sm-2">
+        Workspace Name
+      </div>
+      <div class="col-lg-8">
+        Workspace Description
+      </div>
+      <div class="col-sm-2">
+        Actions
+      </div>
+    </div>
+
+    <div class="row"  *ngFor="let workspace of workspaces; let i = index">
+      <div class="col-sm-2 name">
+        {{ workspace.name }}      
+      </div>
+      <div class="col-lg-8 description">
+        {{ workspace.description }}      
+      </div>
+      <div class="col-sm-2 actions">
+        <button class="btn btn-danger" (click)="removeWorkspace(i)">Remove</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <input type="text" [(ngModel)]="newWorkspace.name" placeholder="Title">
+      </div>
+      <div class="col-lg-8">
+        <input type="text" [(ngModel)]="newWorkspace.description" placeholder="Description">
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-success btn-lg" (click)="addNew()">Add workspace</button> 
+      </div>
+    </div>
+  </div>
+</div>

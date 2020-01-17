@@ -1,0 +1,8 @@
+<div>
+  <div *ngFor="let post of posts">
+      <app-post [style]="style" [content]="post"></app-post>
+  </div>
+</div>
+<div *ngIf="posts.length === 0">
+  <app-info></app-info>
+</div>

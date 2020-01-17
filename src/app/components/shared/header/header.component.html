@@ -1,0 +1,26 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" [routerLink]="'/'">Pinboard</a>
+    <div class="navbar-expand mr-auto">
+      <ul class="navbar-nav" *ngIf="securityService.isAuthenticated()">
+        <li>
+            <button type="button" class="btn btn-success" (click)="openAddModal()">Add note</button>
+        </li>
+        <div class="nav-item" ngbDropdown #myDrop="ngbDropdown">
+            <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Workspaces</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button [routerLink]="['/workspace', workspace.workspaceId]" *ngFor="let workspace of workspaces" ngbDropdownItem>{{workspace.name}}</button>
+              <hr>
+              <button [routerLink]="'/workspaceManagement'" ngbDropdownItem>Manage Workspaces</button>
+            </div>
+        </div>
+      </ul>
+    </div>
+    <div class="navbar-expand ml-auto navbar-nav" *ngIf="securityService.isAuthenticated()">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" [routerLink]="'options'" [routerLinkActive]="['active']">Options</a>
+        <a class="nav-item nav-link" [routerLink]="'/'" (click)="logOut()">Logout</a>
+      </div>
+    </div>
+  </nav>
+</header>
