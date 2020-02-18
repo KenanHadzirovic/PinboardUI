@@ -9,7 +9,7 @@ import { PreferencesService } from 'src/app/services/preferences/preferences.ser
 })
 export class OptionsComponent implements OnInit {
 
-  private options: Preference[];
+  public options: Preference[];
 
   constructor(private preferenceService: PreferencesService) { }
 
@@ -20,7 +20,7 @@ export class OptionsComponent implements OnInit {
     this.options = this.preferenceService.preferences;
   }
 
-  private cancel(): void {
+  public cancel(): void {
     this.preferenceService.createPreferences();
   }
 }

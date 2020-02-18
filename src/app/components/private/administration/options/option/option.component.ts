@@ -16,15 +16,15 @@ export class OptionComponent implements OnInit {
   ngOnInit() {
   }
 
-  private isBoolean(): boolean {
+  public isBoolean(): boolean {
     return this.option.boolValue != null;
   }
 
-  private isColor(): boolean {
+  public isColor(): boolean {
     return this.option.preferenceType.name.includes('Color');
   }
 
-  private getType(): string {
+  public getType(): string {
     return this.option.preferenceType.name.includes('Size') ? 'number' : 'text';
   }
 }
