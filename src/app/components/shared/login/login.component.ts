@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +9,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder,) { }
+  showAlert: boolean = false;
+  username: string = "";
+  password: string = "";
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+  }
 
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-  });
+  login() {
+    this.showAlert = !this.userService.login(this.username, this.password);
+    if(!this.showAlert)
+    {
+      this.router.navigate([ '/workspace/1' ]);
+    }
+  }
+
+  resetAlert()
+  {
+    this.showAlert = false;
   }
 
 }

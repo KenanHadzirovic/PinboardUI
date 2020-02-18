@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Post } from 'src/app/models/post';
@@ -37,6 +37,10 @@ export class AddNoteComponent implements OnInit {
   }
 
   public savePost(){
+    if(this.post.reminderDate)
+    {
+      this.post.reminderDate = new Date(this.post.reminderDate.year,this.post.reminderDate.month,this.post.reminderDate.day);
+    }
     this.workspaceService.savePost(this.post);
     this.activeModal.close();
   }

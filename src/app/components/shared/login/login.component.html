@@ -1,15 +1,24 @@
-<form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h2>Login</h2>
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" formControlName="username" class="form-control"/>
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback"></div>
+<div class="row">
+    <div class="col-md-6">
+        <img src="https://i.imgur.com/4siGyZM.png" class="logo" />
     </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" class="form-control"/>
+    
+    <div class="col-md-4">
+        <h1 class="title">Login</h1>
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" (input)="resetAlert()" [(ngModel)]="username" required minlength="3">
+        
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" (input)="resetAlert()" [(ngModel)]="password" required minlength="3">
+                
+            <button [disabled]="!username.length || !password.length" (click)="login()">Login</button>
+        </div>
+        
+        <div class="alert alert-danger altert-dismissable" *ngIf="showAlert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Login Error!</strong> Username or password is incorrect. Please try again.
+        </div>
     </div>
-    <div class="form-group">
-        <button class="btn btn-primary">Login</button>
-    </div>
-</form>
+    <div class="col-md-2"></div>
+</div>

@@ -17,6 +17,12 @@ import { OptionComponent } from './components/private/administration/options/opt
 import { WorkspacePanelComponent } from './components/private/administration/workspace-panel/workspace-panel.component';
 import { LoginValidationComponent } from './components/private/content/modals/login-validation/login-validation.component';
 import { InfoComponent } from './components/private/content/workspace/info/info.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ColorPickerModule } from 'ngx-color-picker';
+
+import {MatBadgeModule} from '@angular/material/badge';
+import { RegisterComponent } from './components/shared/register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +36,8 @@ import { InfoComponent } from './components/private/content/workspace/info/info.
     OptionComponent,
     WorkspacePanelComponent,
     LoginValidationComponent,
-    InfoComponent
+    InfoComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,10 @@ import { InfoComponent } from './components/private/content/workspace/info/info.
     ReactiveFormsModule,
     HttpClientModule,
     AngularFontAwesomeModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserAnimationsModule,
+    ColorPickerModule,
+    MatBadgeModule
   ],
   entryComponents: [
     AddNoteComponent

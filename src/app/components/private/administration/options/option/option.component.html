@@ -2,10 +2,13 @@
   <div class="col-md-2">
       <label>{{ option.preferenceType.name }}: </label>
     </div>
-    <div class="col-xs-4">
-      <input *ngIf="!isBoolean()" type="text" [(ngModel)]="option.value">
+    <div class="col-md-2">
+      <input *ngIf="!isBoolean()" [type]="getType()" [(ngModel)]="option.value">
       <span *ngIf="isBoolean()">
         <input type="checkbox" [(ngModel)]="option.boolValue">
       </span>
+    </div>
+    <div class="col-md-2">
+      <input *ngIf="isColor()" [(colorPicker)]="option.value" [style.background]="option.value"/>
     </div>
 </div>

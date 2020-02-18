@@ -1,5 +1,16 @@
 <div class="options-panel">
   <h2>Options</h2>
+  <div class="row header">
+    <div class="col-md-2">
+      Preference Name
+    </div>
+    <div class="col-md-2">
+      Selected Value
+    </div>
+    <div class="col-md-2">
+      Color-Picker
+    </div>
+  </div>
   <div *ngFor="let option of options">
     <app-option [option]="option"></app-option>
   </div>

@@ -1,3 +1,47 @@
 button {
     margin-right: 5px;
 }
+
+.search-box {
+    border: 3px;
+    border-color: grey;
+    background-color: slategrey;
+    border-radius: 4px;
+    color: whitesmoke;
+    padding-left: 5px;
+    width: 250px;
+}
+::placeholder {
+    color: lightgrey;
+}
+
+.notif-icon {
+    color: lightgrey;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.notification {
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.notification:hover {
+    background-color: #ebebeb;
+}
+
+.notification-clear {
+    color: grey;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-brand {
+    cursor: pointer;
+}

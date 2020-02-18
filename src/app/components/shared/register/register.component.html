@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-4">
+        <img src="https://i.imgur.com/4siGyZM.png" class="logo" />
+    </div>
+
+    <div class="col-md-5">
+        <h1 class="title">Register</h1>
+        <div class="container">
+            <label for="fullname"><b>Full Name</b></label>
+            <input type="text" placeholder="Enter Full Name" name="fullname" (input)="resetAlert()" [(ngModel)]="fullname" required minlength="3">
+        
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" (input)="resetAlert()" [(ngModel)]="username" required minlength="3">
+        
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" (input)="resetAlert()" [(ngModel)]="password" required minlength="3">
+                
+            <label for="confirmpassword"><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="confirmpassword" (input)="resetAlert()" [(ngModel)]="confirmpassword" required minlength="3">
+        
+            <button [disabled]="disableRegisterButton()" (click)="register()">Register</button>
+        </div>
+        
+        <div class="alert alert-danger altert-dismissable" *ngIf="showAlert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Registration error!</strong> {{alert}}
+        </div>
+    </div>
+
+    <div class="col-md-3 introduction">
+        In order to use the application there is a need to register!
+        Please enter your data and create a new account to access application features.
+        If you already have an account, <a [routerLink]="'/login'">sign in</a>.
+    </div>
+</div>

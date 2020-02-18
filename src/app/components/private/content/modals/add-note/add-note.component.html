@@ -12,15 +12,21 @@
         <textarea placeholder="Description" [(ngModel)]="post.description"></textarea>
     </div>
     <div>
-      <!-- <select [(ngModel)]="activeWorkspace">
-        <option *ngFor="let workspace of workspaces" [value]="workspace.workspaceId">
-          {{ workspace.name }}
-        </option>
-      </select> -->
       <select class="form-control" name="ParentOrganizationType" [(ngModel)]="post.workspaceId">
         <option *ngFor="let workspace of workspaces" [ngValue]="workspace.workspaceId">{{ workspace.name }}</option>
       </select>
     </div>
+
+    <div class="input-group">
+      <input class="form-control" placeholder="Set reminder"
+             name="dp" [(ngModel)]="post.reminderDate" ngbDatepicker #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">        
+          <fa name="calendar" class="icons calendar"></fa>
+        </button>
+      </div>
+    </div>
+
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

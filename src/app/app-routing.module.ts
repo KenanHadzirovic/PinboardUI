@@ -4,11 +4,13 @@ import { LoginComponent } from './components/shared/login/login.component';
 import { WorkspaceComponent } from './components/private/content/workspace/workspace.component';
 import { OptionsComponent } from './components/private/administration/options/options.component';
 import { WorkspacePanelComponent } from './components/private/administration/workspace-panel/workspace-panel.component';
+import { RegisterComponent } from './components/shared/register/register.component';
 
 const routes: Routes = [
   { path: 'workspace/:id', component: WorkspaceComponent},
   { path: 'workspaceManagement', component: WorkspacePanelComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'options', component: OptionsComponent },
   { path: '', component: LoginComponent}
 ];

@@ -4,4 +4,5 @@ export class Post {
     description: string;
     isDeleted: boolean;
     workspaceId: number;
+    reminderDate: any;
 }

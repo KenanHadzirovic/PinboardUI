@@ -23,7 +23,7 @@ export class PreferencesService {
       { preferenceId: 4, value: null, userId: 1, preferenceType: { preferenceTypeId: 2, name: "Is user online"}, boolValue: false },
       { preferenceId: 5, value: null, userId: 1, preferenceType: { preferenceTypeId: 2, name: "Is email confirmed"}, boolValue: true },
       { preferenceId: 6, value: null, userId: 1, preferenceType: { preferenceTypeId: 2, name: "Is user authenticated"}, boolValue: false },
-      { preferenceId: 7, value: 'Kenan', userId: 1, preferenceType: { preferenceTypeId: 2, name: "Authenticated admin"}, boolValue: null }
+      { preferenceId: 7, value: 'Administrator', userId: 1, preferenceType: { preferenceTypeId: 2, name: "Authenticated admin"}, boolValue: null }
     ];
   }
 }

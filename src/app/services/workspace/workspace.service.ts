@@ -1,6 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { Workspace } from 'src/app/models/workspace';
+import { Notification } from 'src/app/models/notification';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,12 @@ export class WorkspaceService {
   constructor() { 
     this.createWorkspaces();
     this.createPosts();
+    this.createNotifications();
   }
 
   posts: Post[];
   workspaces: Workspace[];
+  notifications: Notification[];
 
   @Output() postChange: EventEmitter<Post[]> = new EventEmitter();
   @Output() workspaceChange: EventEmitter<Workspace[]> = new EventEmitter();
@@ -64,6 +67,10 @@ export class WorkspaceService {
     this.postChange.emit(this.posts);
   }
 
+  public search(searchString: string) {
+    this.postChange.emit(this.posts.filter(x => x.description.includes(searchString) || x.title.includes(searchString)));
+  }
+
   public createPosts()
   {
     if(!!this.posts)
@@ -71,10 +78,10 @@ export class WorkspaceService {
       return;
     }
     this.posts = [
-      {postId: 1, isDeleted: false, title:"Sample Post #1", description:"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.", workspaceId: 1},
-      {postId: 2, isDeleted: false, title:"Sample Post #2", description:"", workspaceId: 1},
-      {postId: 3, isDeleted: false, title:"Sample Post #3", description:"Present project documentation on Friday", workspaceId: 1},
-      {postId: 4, isDeleted: false, title:"Sample Post #4", description:"Don't forget to send homework files to the professor!", workspaceId: 1},
+      {postId: 1, isDeleted: false, title:"Sample Post #1", description:"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.", workspaceId: 1, reminderDate: null},
+      {postId: 2, isDeleted: false, title:"Sample Post #2", description:"", workspaceId: 1, reminderDate: null},
+      {postId: 3, isDeleted: false, title:"Sample Post #3", description:"Present project documentation on Friday", workspaceId: 1, reminderDate: new Date('2020-02-02')},
+      {postId: 4, isDeleted: false, title:"Sample Post #4", description:"Don't forget to send homework files to the professor!", workspaceId: 1, reminderDate: new Date('2020-01-02')},
     ];
     this.postChange.emit(this.posts);
   }
@@ -89,6 +96,23 @@ export class WorkspaceService {
       { workspaceId: 1, ownerId: 1, name: "Kenan's thinking", description: "Kenan's own workspace", isDeleted: false },
       { workspaceId: 2, ownerId: 1, name: "School workspace", description: "Only school notes and reminders go here", isDeleted: false }
     ];
+    this.workspaceChange.emit(this.workspaces);
+  }
+
+  
+  public createNotifications()
+  {
+    if(!!this.notifications)
+    {
+      return;
+    }
+    this.notifications = [];
+    var now = new Date();
+    this.posts.forEach(post => {
+      if(post.reminderDate && post.reminderDate < now) {
+        this.notifications.push({notificationId: post.postId, content: post.title});
+      }
+    });
     this.workspaceChange.emit(this.workspaces);
   }
   

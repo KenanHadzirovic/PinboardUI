@@ -5,3 +5,19 @@ label {
 .no {
     margin-left: 20px;
 }
+
+input {
+    padding-left: 5px;
+    margin-left: 20px;
+}
+
+input[type=text], input[type=number] {
+    margin: auto;
+    display: flex;
+}
+
+input[type="checkbox"] {
+    margin: auto;
+    justify-content: center;
+    display: flex;
+}

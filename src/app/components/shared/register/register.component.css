@@ -25,8 +25,8 @@ label, button, input {
 }
 
 label {
-    width: 500px;
     padding-top: 10px;
+    width: 500px;
 }
 
 button:hover {
@@ -47,6 +47,7 @@ button[disabled] {
 .container {
     padding-top: 50px;
 }
+
 .title {
     display: flex;
     justify-content: center;

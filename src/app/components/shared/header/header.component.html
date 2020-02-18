@@ -1,26 +1,43 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" [routerLink]="'/'">Pinboard</a>
-    <div class="navbar-expand mr-auto">
-      <ul class="navbar-nav" *ngIf="securityService.isAuthenticated()">
-        <li>
-            <button type="button" class="btn btn-success" (click)="openAddModal()">Add note</button>
-        </li>
-        <div class="nav-item" ngbDropdown #myDrop="ngbDropdown">
-            <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Workspaces</button>
-            <div ngbDropdownMenu aria-labelledby="dropdownManual">
-              <button [routerLink]="['/workspace', workspace.workspaceId]" *ngFor="let workspace of workspaces" ngbDropdownItem>{{workspace.name}}</button>
-              <hr>
-              <button [routerLink]="'/workspaceManagement'" ngbDropdownItem>Manage Workspaces</button>
-            </div>
-        </div>
-      </ul>
-    </div>
-    <div class="navbar-expand ml-auto navbar-nav" *ngIf="securityService.isAuthenticated()">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" [routerLink]="'options'" [routerLinkActive]="['active']">Options</a>
-        <a class="nav-item nav-link" [routerLink]="'/'" (click)="logOut()">Logout</a>
+      <img src="https://i.imgur.com/U5074V0.png" class="logo" />
+      <a class="navbar-brand" (click)="home()">Pinboard</a>
+      <div *ngIf="loggedIn" class="navbar-expand mr-auto">
+        <ul class="navbar-nav">
+          <li>
+              <button type="button" class="btn btn-success" (click)="openAddModal()">Add note</button>
+          </li>
+          <div class="nav-item" ngbDropdown #myDrop="ngbDropdown">
+              <button class="btn btn-primary" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Workspaces</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                <button [routerLink]="['/workspace', workspace.workspaceId]" *ngFor="let workspace of workspaces" ngbDropdownItem>{{workspace.name}}</button>
+                <hr>
+                <button [routerLink]="'/workspaceManagement'" ngbDropdownItem>Manage Workspaces</button>
+              </div>
+          </div>
+        </ul>
       </div>
-    </div>
+      <div class="navbar-expand ml-auto navbar-nav">
+        <div class="navbar-nav">
+          <input *ngIf="loggedIn" class="search-box" placeholder="Search" spellcheck="false" (input)="search()" [(ngModel)]="searchString"/>
+          <fa *ngIf="loggedIn" [matBadgeHidden]="notifications.length == 0" name="bell-o" [autoClose]="notifications.length == 0" class="icons bell-o fa-lg notif-icon" [matBadge]="notifications.length" [ngbPopover]="popContent" popoverTitle="Notifications"></fa>
+          <a *ngIf="loggedIn" class="nav-item nav-link" [routerLink]="'options'" [routerLinkActive]="['active']">Options</a>
+          <a *ngIf="loggedIn" class="nav-item nav-link" [routerLink]="'/'" (click)="logout()">Logout</a>
+          <a *ngIf="!loggedIn" class="nav-item nav-link" [routerLink]="'register'" (click)="register()">Register</a>
+          <a *ngIf="!loggedIn" class="nav-item nav-link" [routerLink]="'/'" (click)="login()">Login</a>
+        </div>
+      </div>
   </nav>
 </header>
+
+<ng-template #popContent>
+  <div class="notification-container">
+    <div *ngIf="notifications.length == 0">There are no new notifications!</div>
+    <div *ngFor="let notification of notifications">
+      <div class="notification">
+        {{notification.content}}
+        <fa name="times" class="times notification-clear" (click)="clearNotification(notification.notificationId)"></fa>
+      </div>
+    </div>
+  </div>
+</ng-template>

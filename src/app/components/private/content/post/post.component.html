@@ -5,7 +5,14 @@
         <fa name="edit" (click)="openEditModal()" class="icons"></fa>
     </div>
     <hr class="separator">
-    <div class="col-xs-4 content">
+    <div *ngIf="content.description" class="col-xs-4 content">
         <label>{{ content.description }}</label>
+    </div>
+    <div *ngIf="content.reminderDate != null">
+        <hr class="separator">
+        <div class="col-xs-4 content">
+            <fa name="calendar" class="icons calendar"></fa>
+            <span>{{ content.reminderDate | date: 'fullDate' }}</span>
+        </div>
     </div>
 </div>

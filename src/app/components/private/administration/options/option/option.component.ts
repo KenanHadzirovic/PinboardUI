@@ -19,4 +19,12 @@ export class OptionComponent implements OnInit {
   private isBoolean(): boolean {
     return this.option.boolValue != null;
   }
+
+  private isColor(): boolean {
+    return this.option.preferenceType.name.includes('Color');
+  }
+
+  private getType(): string {
+    return this.option.preferenceType.name.includes('Size') ? 'number' : 'text';
+  }
 }

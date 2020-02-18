@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { WorkspaceService } from 'src/app/services/workspace/workspace.service';
 import { Post } from 'src/app/models/post';
-import { SecurityService } from 'src/app/services/security/security.service';
 import { PreferencesService } from 'src/app/services/preferences/preferences.service';
 import { ActivatedRoute } from '@angular/router';
 import { Preference } from 'src/app/models/preference';
@@ -20,7 +19,6 @@ export class WorkspaceComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private userService: UserService, 
               private workspaceService: WorkspaceService, 
-              private securityService: SecurityService, 
               private preferencesService: PreferencesService) { } 
 
   ngOnInit() {
